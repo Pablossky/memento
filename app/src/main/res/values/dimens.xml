@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="content_padding">16dp</dimen>
+    <dimen name="priority_bar_width">6dp</dimen>
+    <dimen name="color_chip_size">40dp</dimen>
+    <dimen name="color_dot_size">20dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

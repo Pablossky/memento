@@ -1,0 +1,1 @@
+-keep class com.pawel.memento.data.model.** { *; }

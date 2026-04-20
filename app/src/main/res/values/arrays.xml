@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="theme_entries">
+        <item>Rozowy</item>
+        <item>Mietowy</item>
+        <item>Niebieski</item>
+        <item>Lawendowy</item>
+        <item>Brzoskwiniowy</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>rose</item>
+        <item>mint</item>
+        <item>sky</item>
+        <item>lavender</item>
+        <item>peach</item>
+    </string-array>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:title="Wyglad">
+        <ListPreference android:key="theme_color"
+            android:title="@string/pref_theme_title" android:summary="@string/pref_theme_summary"
+            android:entries="@array/theme_entries" android:entryValues="@array/theme_values"
+            android:defaultValue="rose" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Powiadomienia">
+        <SwitchPreferenceCompat android:key="default_sound"
+            android:title="@string/pref_sound_title" android:defaultValue="true" />
+        <SwitchPreferenceCompat android:key="default_vibration"
+            android:title="@string/pref_vibration_title" android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>

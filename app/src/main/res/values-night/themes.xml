@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Memento" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#8AA8CC</item>
+        <item name="colorPrimaryVariant">#6B8FAF</item>
+        <item name="colorSecondary">#D4938A</item>
+        <item name="android:colorBackground">#1E1E2E</item>
+        <item name="colorSurface">#2A2A3E</item>
+        <item name="colorError">#E57373</item>
+        <item name="colorOnPrimary">#FAFAFA</item>
+        <item name="colorOnSecondary">#FAFAFA</item>
+        <item name="colorOnBackground">#E8E8F0</item>
+        <item name="colorOnSurface">#E8E8F0</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

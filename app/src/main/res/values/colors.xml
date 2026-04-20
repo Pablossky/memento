@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pastel_rose">#FFB3BA</color>
+    <color name="pastel_peach">#FFDFBA</color>
+    <color name="pastel_butter">#FFFFBA</color>
+    <color name="pastel_mint">#BAFFC9</color>
+    <color name="pastel_sky">#BAE1FF</color>
+    <color name="pastel_lavender">#E8BAFF</color>
+    <color name="pastel_teal">#C8F5ED</color>
+    <color name="pastel_pink">#FFCCE5</color>
+    <color name="primary">#B5C8E2</color>
+    <color name="primary_variant">#8AA8CC</color>
+    <color name="secondary">#F4C2C2</color>
+    <color name="secondary_variant">#E89E9E</color>
+    <color name="background">#FFF8F5</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="on_primary">#1A1A2E</color>
+    <color name="on_secondary">#1A1A2E</color>
+    <color name="on_background">#2D2D3A</color>
+    <color name="on_surface">#2D2D3A</color>
+    <color name="error">#E57373</color>
+    <color name="priority_low">#81C784</color>
+    <color name="priority_medium">#FFB74D</color>
+    <color name="priority_high">#E57373</color>
+    <color name="priority_urgent">#B71C1C</color>
+    <color name="text_hint">#999999</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="toolbar_background">#FCEEFF</color>
+</resources>
