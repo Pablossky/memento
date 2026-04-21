@@ -12,7 +12,7 @@
     <fragment android:id="@+id/mementoEditorFragment"
         android:name="com.pawel.memento.ui.editor.MementoEditorFragment"
         android:label="@string/new_memento">
-        <argument android:name="mementoId" app:argType="long" android:defaultValue="0" />
+        <argument android:name="mementoId" app:argType="long" android:defaultValue="0L" />
     </fragment>
     <fragment android:id="@+id/categoriesFragment"
         android:name="com.pawel.memento.ui.categories.CategoriesFragment"
