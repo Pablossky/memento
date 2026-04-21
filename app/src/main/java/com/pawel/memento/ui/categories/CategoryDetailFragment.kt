@@ -30,7 +30,7 @@ class CategoryDetailFragment : Fragment() {
             onToggleComplete = { viewModel.toggleCompleted(it.memento) },
             onClick = {
                 findNavController().navigate(
-                    CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(it.memento.id)
+                    CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(it.memento.id.toInt())
                 )
             },
             onLongClick = { item ->
@@ -45,7 +45,7 @@ class CategoryDetailFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         binding.fabAdd.setOnClickListener {
             findNavController().navigate(
-                CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(0L)
+                CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(0)
             )
         }
         viewModel.setSelectedCategory(args.categoryId.toLong())
