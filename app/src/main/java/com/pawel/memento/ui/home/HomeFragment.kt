@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = MementoAdapter(
             onToggleComplete = { viewModel.toggleCompleted(it.memento) },
-            onClick = { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMementoEditorFragment(it.memento.id)) },
+            onClick = { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMementoEditorFragment(it.memento.id.toInt())) },
             onLongClick = { item ->
                 MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.delete_memento)
                     .setMessage(getString(R.string.delete_memento_confirm, item.memento.title))
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         binding.chipUpcoming.setOnClickListener { viewModel.setFilterTab(FilterTab.UPCOMING) }
         binding.chipCompleted.setOnClickListener{ viewModel.setFilterTab(FilterTab.COMPLETED) }
         binding.fabAdd.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMementoEditorFragment(0L))
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMementoEditorFragment(0))
         }
         requireActivity().addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

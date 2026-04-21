@@ -41,8 +41,8 @@ class MementoEditorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupColorPicker(); setupPriorityChips(); setupReminderChips()
         setupRepeatChips(); setupDateTimePicker(); setupSave(); observeData()
-        requireActivity().title = if (args.mementoId != 0L) {
-            viewModel.loadMemento(args.mementoId); getString(R.string.edit_memento)
+        requireActivity().title = if (args.mementoId != 0) {
+            viewModel.loadMemento(args.mementoId.toLong()); getString(R.string.edit_memento)
         } else getString(R.string.new_memento)
     }
     private fun setupColorPicker() {
@@ -115,7 +115,7 @@ class MementoEditorFragment : Fragment() {
             }
             binding.tilTitle.error = null
             viewModel.saveMemento(
-                args.mementoId, title, binding.etDescription.text.toString().trim(),
+                args.mementoId.toLong(), title, binding.etDescription.text.toString().trim(),
                 selectedDueDateTime, selectedCategoryId, selectedPriority, selectedColorIndex,
                 if (selectedDueDateTime != null) selectedReminderType else ReminderType.NONE,
                 binding.switchSound.isChecked, binding.switchVibration.isChecked, selectedRepeatType
@@ -156,7 +156,7 @@ class MementoEditorFragment : Fragment() {
         }
         viewModel.savedId.observe(viewLifecycleOwner) { sid ->
             sid ?: return@observe
-            if (args.mementoId != 0L) AlarmScheduler.cancel(requireContext(), args.mementoId.toInt())
+            if (args.mementoId != 0) AlarmScheduler.cancel(requireContext(), args.mementoId.toInt())
             AlarmScheduler.scheduleByParams(requireContext(), sid,
                 binding.etTitle.text.toString(), selectedDueDateTime,
                 if (selectedDueDateTime != null) selectedReminderType else ReminderType.NONE,
