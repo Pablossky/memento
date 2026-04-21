@@ -3,19 +3,21 @@
     <string name="nav_home">Mementos</string>
     <string name="nav_categories">Kategorie</string>
     <string name="nav_settings">Ustawienia</string>
+    <string name="nav_calendar">Kalendarz</string>
     <string name="tab_all">Wszystkie</string>
     <string name="tab_today">Dzis</string>
     <string name="tab_upcoming">Nadchodzace</string>
     <string name="tab_completed">Ukonczone</string>
     <string name="empty_mementos">Brak mementow.\nDotknij + aby dodac.</string>
     <string name="empty_categories">Brak kategorii.\nDotknij + aby dodac.</string>
+    <string name="empty_day">Brak mementow na ten dzien.</string>
     <string name="new_memento">Nowe Memento</string>
     <string name="edit_memento">Edytuj Memento</string>
     <string name="hint_title">Tytul *</string>
     <string name="hint_description">Opis (opcjonalnie)</string>
     <string name="pick_date_time">Ustaw date i czas</string>
-    <string name="clear_date">Wyczysc</string>
-    <string name="label_color">Kolor tla</string>
+    <string name="clear_date">Wyczysc date</string>
+    <string name="label_color">Kolor karty</string>
     <string name="label_priority">Priorytet</string>
     <string name="label_category">Kategoria</string>
     <string name="label_reminder">Typ przypomnienia</string>
@@ -63,4 +65,6 @@
     <string name="sort_priority">Priorytetu</string>
     <string name="sort_title">Tytulu</string>
     <string name="sort_created">Daty dodania</string>
+    <string name="mementos_in_category">Mementos w kategorii</string>
+    <string name="no_mementos_in_category">Brak mementow w tej kategorii.</string>
 </resources>

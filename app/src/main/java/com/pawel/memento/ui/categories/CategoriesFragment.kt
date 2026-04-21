@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,7 +27,14 @@ class CategoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = CategoryAdapter(onClick = {}, onEdit = { showDialog(it) }, onDelete = { confirmDelete(it) })
+        adapter = CategoryAdapter(onClick = { category ->
+                findNavController().navigate(
+                    CategoriesFragmentDirections.actionCategoriesFragmentToCategoryDetailFragment(
+                        categoryId = category.id,
+                        categoryName = category.name
+                    )
+                )
+            }, onEdit = { showDialog(it) }, onDelete = { confirmDelete(it) })
         binding.recyclerView.adapter = adapter
         binding.fabAddCategory.setOnClickListener { showDialog(null) }
         viewModel.allCategories.observe(viewLifecycleOwner) { cats ->

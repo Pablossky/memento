@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Memento" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#8AA8CC</item>
-        <item name="colorPrimaryVariant">#6B8FAF</item>
-        <item name="colorSecondary">#D4938A</item>
-        <item name="android:colorBackground">#1E1E2E</item>
-        <item name="colorSurface">#2A2A3E</item>
-        <item name="colorError">#E57373</item>
-        <item name="colorOnPrimary">#FAFAFA</item>
-        <item name="colorOnSecondary">#FAFAFA</item>
-        <item name="colorOnBackground">#E8E8F0</item>
-        <item name="colorOnSurface">#E8E8F0</item>
+        <item name="colorPrimary">#7B9EB8</item>
+        <item name="colorPrimaryVariant">#5A7A9A</item>
+        <item name="colorSecondary">#C49090</item>
+        <item name="android:colorBackground">#1E1A1F</item>
+        <item name="colorSurface">#2D2830</item>
+        <item name="colorError">#CF6679</item>
+        <item name="colorOnPrimary">#F0F0F0</item>
+        <item name="colorOnSecondary">#F0F0F0</item>
+        <item name="colorOnBackground">#F0F0F0</item>
+        <item name="colorOnSurface">#F0F0F0</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textColorPrimary">#F0F0F0</item>
+        <item name="android:textColorSecondary">#CCCCCC</item>
     </style>
+    <style name="Theme.Memento.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
 </resources>

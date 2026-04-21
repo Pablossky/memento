@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Pastel memento colors -->
     <color name="pastel_rose">#FFB3BA</color>
     <color name="pastel_peach">#FFDFBA</color>
     <color name="pastel_butter">#FFFFBA</color>
@@ -8,22 +9,34 @@
     <color name="pastel_lavender">#E8BAFF</color>
     <color name="pastel_teal">#C8F5ED</color>
     <color name="pastel_pink">#FFCCE5</color>
+    <!-- Theme colors -->
     <color name="primary">#B5C8E2</color>
-    <color name="primary_variant">#8AA8CC</color>
+    <color name="primary_variant">#6A9CC4</color>
     <color name="secondary">#F4C2C2</color>
     <color name="secondary_variant">#E89E9E</color>
     <color name="background">#FFF8F5</color>
     <color name="surface">#FFFFFF</color>
-    <color name="on_primary">#1A1A2E</color>
-    <color name="on_secondary">#1A1A2E</color>
-    <color name="on_background">#2D2D3A</color>
-    <color name="on_surface">#2D2D3A</color>
-    <color name="error">#E57373</color>
-    <color name="priority_low">#81C784</color>
-    <color name="priority_medium">#FFB74D</color>
-    <color name="priority_high">#E57373</color>
+    <color name="surface_variant">#F5F0FB</color>
+    <!-- Text – dark/black for readability -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#444444</color>
+    <color name="text_hint">#888888</color>
+    <!-- Aliases used in layouts -->
+    <color name="on_primary">#1A1A1A</color>
+    <color name="on_secondary">#1A1A1A</color>
+    <color name="on_background">#1A1A1A</color>
+    <color name="on_surface">#1A1A1A</color>
+    <color name="error">#D32F2F</color>
+    <!-- Priority -->
+    <color name="priority_low">#4CAF50</color>
+    <color name="priority_medium">#FF9800</color>
+    <color name="priority_high">#F44336</color>
     <color name="priority_urgent">#B71C1C</color>
-    <color name="text_hint">#999999</color>
+    <!-- Misc -->
     <color name="divider">#E0E0E0</color>
-    <color name="toolbar_background">#FCEEFF</color>
+    <color name="toolbar_background">#F0E6FF</color>
+    <color name="chip_selected">#C9A6E8</color>
+    <color name="calendar_today">#F4C2C2</color>
+    <color name="calendar_selected">#B5C8E2</color>
+    <color name="calendar_dot">#7B5EA7</color>
 </resources>
