@@ -14,7 +14,8 @@
     <fragment android:id="@+id/mementoEditorFragment"
         android:name="com.pawel.memento.ui.editor.MementoEditorFragment"
         android:label="@string/new_memento">
-        <argument android:name="mementoId" app:argType="integer" android:defaultValue="0" />
+        <!-- ZMIENIONO: argType z integer na long -->
+        <argument android:name="mementoId" app:argType="long" android:defaultValue="0L" />
     </fragment>
 
     <fragment android:id="@+id/categoriesFragment"
@@ -27,7 +28,8 @@
     <fragment android:id="@+id/categoryDetailFragment"
         android:name="com.pawel.memento.ui.categories.CategoryDetailFragment"
         android:label="@string/nav_categories">
-        <argument android:name="categoryId" app:argType="integer" android:defaultValue="0" />
+        <!-- ZMIENIONO: argType z integer na long -->
+        <argument android:name="categoryId" app:argType="long" android:defaultValue="0L" />
         <argument android:name="categoryName" app:argType="string" android:defaultValue="" />
         <action android:id="@+id/action_categoryDetailFragment_to_mementoEditorFragment"
             app:destination="@id/mementoEditorFragment" />

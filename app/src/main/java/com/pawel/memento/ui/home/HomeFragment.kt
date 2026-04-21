@@ -22,39 +22,61 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: MementoAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false); return binding.root
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         adapter = MementoAdapter(
             onToggleComplete = { viewModel.toggleCompleted(it.memento) },
-            onClick = { findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMementoEditorFragment(it.memento.id.toInt())) },
+            onClick = { item ->
+                // Safe Args oczekuje Long, więc upewniamy się, że it.memento.id nim jest
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToMementoEditorFragment(item.memento.id)
+                )
+            },
             onLongClick = { item ->
-                MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.delete_memento)
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle(R.string.delete_memento)
                     .setMessage(getString(R.string.delete_memento_confirm, item.memento.title))
                     .setPositiveButton(R.string.delete) { _, _ -> viewModel.deleteMemento(item.memento) }
-                    .setNegativeButton(R.string.cancel, null).show(); true
+                    .setNegativeButton(R.string.cancel, null)
+                    .show()
+                true
             }
         )
+
         binding.recyclerView.adapter = adapter
+
         binding.chipAll.setOnClickListener      { viewModel.setFilterTab(FilterTab.ALL) }
         binding.chipToday.setOnClickListener    { viewModel.setFilterTab(FilterTab.TODAY) }
         binding.chipUpcoming.setOnClickListener { viewModel.setFilterTab(FilterTab.UPCOMING) }
         binding.chipCompleted.setOnClickListener{ viewModel.setFilterTab(FilterTab.COMPLETED) }
+
         binding.fabAdd.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMementoEditorFragment(0))
+            // POPRAWKA: Dodano 'L', aby przekazać Long (0L) zamiast Int (0)
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToMementoEditorFragment(0L)
+            )
         }
+
         requireActivity().addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu_home, menu)
-                val sv = menu.findItem(R.id.action_search).actionView as SearchView
+                val searchItem = menu.findItem(R.id.action_search)
+                val sv = searchItem.actionView as SearchView
                 sv.queryHint = getString(R.string.search_hint)
                 sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(q: String?) = false
-                    override fun onQueryTextChange(q: String?): Boolean { viewModel.setSearchQuery(q.orEmpty()); return true }
+                    override fun onQueryTextChange(q: String?): Boolean {
+                        viewModel.setSearchQuery(q.orEmpty())
+                        return true
+                    }
                 })
             }
+
             override fun onMenuItemSelected(item: MenuItem) = when (item.itemId) {
                 R.id.sort_by_date      -> { viewModel.setSortOrder(SortOrder.BY_DATE_ASC); true }
                 R.id.sort_by_date_desc -> { viewModel.setSortOrder(SortOrder.BY_DATE_DESC); true }
@@ -69,18 +91,28 @@ class HomeFragment : Fragment() {
             adapter.submitList(list)
             binding.tvEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
         }
+
         viewModel.allCategories.observe(viewLifecycleOwner) { categories ->
-            while (binding.chipGroupCategories.childCount > 1) binding.chipGroupCategories.removeViewAt(1)
+            // Czyścimy chipy poza pierwszym (zakładając, że pierwszy to "All" lub stały element)
+            while (binding.chipGroupCategories.childCount > 1) {
+                binding.chipGroupCategories.removeViewAt(1)
+            }
             categories.forEach { category ->
                 binding.chipGroupCategories.addView(Chip(requireContext()).apply {
-                    text = category.name; isCheckable = true
+                    text = category.name
+                    isCheckable = true
                     setOnClickListener {
-                        viewModel.setSelectedCategory(if (viewModel.selectedCategory.value == category.id) null else category.id)
+                        viewModel.setSelectedCategory(
+                            if (viewModel.selectedCategory.value == category.id) null else category.id
+                        )
                     }
                 })
             }
         }
     }
 
-    override fun onDestroyView() { super.onDestroyView(); _binding = null }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -30,7 +30,7 @@ class CategoryDetailFragment : Fragment() {
             onToggleComplete = { viewModel.toggleCompleted(it.memento) },
             onClick = {
                 findNavController().navigate(
-                    CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(it.memento.id.toInt())
+                    CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(it.memento.id)
                 )
             },
             onLongClick = { item ->

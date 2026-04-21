@@ -1,20 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">    <!-- Główny motyw aplikacji -->
     <style name="Theme.Memento" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">#7B9EB8</item>
-        <item name="colorPrimaryVariant">#5A7A9A</item>
-        <item name="colorSecondary">#C49090</item>
-        <item name="android:colorBackground">#1E1A1F</item>
-        <item name="colorSurface">#2D2830</item>
-        <item name="colorError">#CF6679</item>
-        <item name="colorOnPrimary">#F0F0F0</item>
-        <item name="colorOnSecondary">#F0F0F0</item>
-        <item name="colorOnBackground">#F0F0F0</item>
-        <item name="colorOnSurface">#F0F0F0</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:textColorPrimary">#F0F0F0</item>
-        <item name="android:textColorSecondary">#CCCCCC</item>
+        <!-- Kolory podstawowe (to naprawia błąd 0x0) -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+
+        <!-- Kolory akcentowe -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_variant</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+
+        <!-- Kolory tła i powierzchni -->
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorError">@color/error</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
-    <style name="Theme.Memento.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+
+    <style name="Theme.Memento.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="Theme.Memento.AppBarOverlay"
+        parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 </resources>
