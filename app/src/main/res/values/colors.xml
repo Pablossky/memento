@@ -39,4 +39,17 @@
     <color name="calendar_today">#F4C2C2</color>
     <color name="calendar_selected">#B5C8E2</color>
     <color name="calendar_dot">#7B5EA7</color>
+
+    <!-- Zmień te linie w colors.xml -->
+    <color name="colorPrimary">#B5C8E2</color>
+    <color name="colorPrimaryVariant">#6A9CC4</color>
+    <color name="colorSecondary">#F4C2C2</color>
+    <color name="colorSecondaryVariant">#E89E9E</color>
+    <color name="colorBackground">#FFF8F5</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorError">#D32F2F</color>
+    <color name="colorOnPrimary">#1A1A1A</color>
+    <color name="colorOnSecondary">#1A1A1A</color>
+    <color name="colorOnBackground">#1A1A1A</color>
+    <color name="colorOnSurface">#1A1A1A</color>
 </resources>

@@ -17,5 +17,13 @@
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
-    <style name="Theme.Memento.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.Memento.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <!-- <style name="Theme.Memento" parent="Theme.AppCompat.Light.DarkActionBar"></style> -->
+
+    <!-- <style name="Theme.Memento" parent="Theme.MaterialComponents.DayNight.NoActionBar"></style> -->
+
+
+<!-- Na to: -->
+    <!-- <style name="Theme.Memento.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" /> -->
 </resources>
