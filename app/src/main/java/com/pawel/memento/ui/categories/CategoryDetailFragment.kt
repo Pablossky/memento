@@ -1,4 +1,4 @@
-package com.pawel.memento.ui.categories
+﻿package com.pawel.memento.ui.categories
 
 import android.os.Bundle
 import android.view.*
@@ -26,11 +26,14 @@ class CategoryDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().title = args.categoryName
+
         adapter = MementoAdapter(
             onToggleComplete = { viewModel.toggleCompleted(it.memento) },
             onClick = {
                 findNavController().navigate(
-                    CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(it.memento.id)
+                    CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(
+                        it.memento.id.toInt()
+                    )
                 )
             },
             onLongClick = { item ->
@@ -40,6 +43,9 @@ class CategoryDetailFragment : Fragment() {
                     .setPositiveButton(R.string.delete) { _, _ -> viewModel.deleteMemento(item.memento) }
                     .setNegativeButton(R.string.cancel, null).show()
                 true
+            },
+            onToggleOccurrence = { item, idx, checked ->
+                viewModel.toggleOccurrence(item.memento, idx, checked)
             }
         )
         binding.recyclerView.adapter = adapter
@@ -48,6 +54,7 @@ class CategoryDetailFragment : Fragment() {
                 CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(0)
             )
         }
+
         viewModel.setSelectedCategory(args.categoryId.toLong())
         viewModel.mementos.observe(viewLifecycleOwner) { list ->
             adapter.submitList(list)

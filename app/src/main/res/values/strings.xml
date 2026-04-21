@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <string name="app_name">Memento</string>
     <string name="nav_home">Mementos</string>
     <string name="nav_categories">Kategorie</string>
@@ -22,6 +22,8 @@
     <string name="label_category">Kategoria</string>
     <string name="label_reminder">Typ przypomnienia</string>
     <string name="label_repeat">Powtarzanie</string>
+    <string name="label_frequency">Ile razy dziennie</string>
+    <string name="label_frequency_unit">razy / dzien</string>
     <string name="label_sound">Dzwiek</string>
     <string name="label_vibration">Wibracje</string>
     <string name="save">Zapisz</string>
@@ -68,3 +70,4 @@
     <string name="mementos_in_category">Mementos w kategorii</string>
     <string name="no_mementos_in_category">Brak mementow w tej kategorii.</string>
 </resources>
+

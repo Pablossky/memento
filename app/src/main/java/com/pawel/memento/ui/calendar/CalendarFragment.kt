@@ -1,4 +1,4 @@
-package com.pawel.memento.ui.calendar
+﻿package com.pawel.memento.ui.calendar
 
 import android.graphics.Color
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.pawel.memento.R
+import com.pawel.memento.data.model.RepeatType
 import com.pawel.memento.databinding.FragmentCalendarBinding
 import com.pawel.memento.ui.adapters.MementoAdapter
 import java.text.SimpleDateFormat
@@ -45,24 +46,30 @@ class CalendarFragment : Fragment() {
                     .setPositiveButton(R.string.delete) { _, _ -> viewModel.deleteMemento(item.memento) }
                     .setNegativeButton(R.string.cancel, null).show()
                 true
+            },
+            onToggleOccurrence = { item, idx, checked ->
+                viewModel.toggleOccurrence(item.memento, idx, checked)
             }
         )
         binding.recyclerDayMementos.adapter = mementoAdapter
         binding.btnPrevMonth.setOnClickListener { viewModel.prevMonth() }
         binding.btnNextMonth.setOnClickListener { viewModel.nextMonth() }
+
         val rebuild: (Any?) -> Unit = { rebuildCalendar() }
         viewModel.currentYear.observe(viewLifecycleOwner, rebuild)
         viewModel.currentMonth.observe(viewLifecycleOwner, rebuild)
         viewModel.allActiveMementos.observe(viewLifecycleOwner, rebuild)
+
         viewModel.selectedDay.observe(viewLifecycleOwner) { ts ->
             binding.tvSelectedDate.text = if (ts != null)
-                dayFmt.format(Date(ts)).replaceFirstChar { it.uppercase() } else ""
+                dayFmt.format(Date(ts)).replaceFirstChar { it.uppercase() }
+            else ""
             rebuildCalendar()
         }
         viewModel.dayMementos.observe(viewLifecycleOwner) { list ->
             mementoAdapter.submitList(list)
             val hasSel = viewModel.selectedDay.value != null
-            binding.tvNoMementos.visibility = if (hasSel && list.isEmpty()) View.VISIBLE else View.GONE
+            binding.tvNoMementos.visibility        = if (hasSel && list.isEmpty()) View.VISIBLE else View.GONE
             binding.recyclerDayMementos.visibility = if (list.isNotEmpty()) View.VISIBLE else View.GONE
         }
     }
@@ -74,10 +81,11 @@ class CalendarFragment : Fragment() {
         binding.tvMonthYear.text = monthFmt.format(cal.time).replaceFirstChar { it.uppercase() }
         var firstDow = cal.get(Calendar.DAY_OF_WEEK) - 2
         if (firstDow < 0) firstDow = 6
-        val daysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
-        val today       = Calendar.getInstance()
-        val allMementos = viewModel.allActiveMementos.value ?: emptyList()
-        val selectedTs  = viewModel.selectedDay.value
+        val daysInMonth     = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
+        val today           = Calendar.getInstance()
+        val allMementos     = viewModel.allActiveMementos.value ?: emptyList()
+        val selectedTs      = viewModel.selectedDay.value
+        val dailyRepeatCount = allMementos.count { it.memento.repeatType == RepeatType.DAILY }
         val days = mutableListOf<CalendarDayAdapter.Day>()
         repeat(firstDow) { days.add(CalendarDayAdapter.Day(0, 0, false, false, 0)) }
         for (d in 1..daysInMonth) {
@@ -91,13 +99,20 @@ class CalendarFragment : Fragment() {
                 sc.get(Calendar.YEAR) == year && sc.get(Calendar.MONTH) == month &&
                 sc.get(Calendar.DAY_OF_MONTH) == d
             } ?: false
-            val count = allMementos.count { mwc ->
-                val dt = mwc.memento.dueDateTime ?: return@count false
+            val dayOfWeek = Calendar.getInstance().apply { set(year, month, d) }.get(Calendar.DAY_OF_WEEK)
+            val specificCount = allMementos.count { mwc ->
+                val mem = mwc.memento
+                if (mem.repeatType == RepeatType.DAILY) return@count false
+                val dt = mem.dueDateTime ?: return@count false
                 val c = Calendar.getInstance().apply { timeInMillis = dt }
-                c.get(Calendar.YEAR) == year && c.get(Calendar.MONTH) == month &&
-                c.get(Calendar.DAY_OF_MONTH) == d
+                when (mem.repeatType) {
+                    RepeatType.NONE    -> c.get(Calendar.YEAR) == year && c.get(Calendar.MONTH) == month && c.get(Calendar.DAY_OF_MONTH) == d
+                    RepeatType.WEEKLY  -> c.get(Calendar.DAY_OF_WEEK) == dayOfWeek
+                    RepeatType.MONTHLY -> c.get(Calendar.DAY_OF_MONTH) == d
+                    else -> false
+                }
             }
-            days.add(CalendarDayAdapter.Day(d, dayTs, isToday, isSelected, count))
+            days.add(CalendarDayAdapter.Day(d, dayTs, isToday, isSelected, specificCount + dailyRepeatCount))
         }
         calendarAdapter.submitList(days)
     }

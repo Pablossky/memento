@@ -36,4 +36,24 @@ class MementoRepository(private val mementoDao: MementoDao, private val category
     suspend fun deleteCategory(category: Category) = categoryDao.delete(category)
     suspend fun getCategoryById(id: Long) = categoryDao.getCategoryById(id)
     suspend fun getMementoCountForCategory(categoryId: Long) = categoryDao.getMementoCountForCategory(categoryId)
+
+    /**
+     * Toggle one occurrence (0-based [occurrenceIndex]) of a multi-day habit.
+     * Resets completionMask automatically when a new day is detected.
+     * For DAILY repeat mementos: never marks isCompleted=true (so they stay active every day).
+     */
+    suspend fun toggleOccurrence(memento: Memento, occurrenceIndex: Int, checked: Boolean) {
+        val todayStart = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, 0); set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
+        }.timeInMillis
+        // If stored date is from a previous day, start fresh
+        val currentMask = if (memento.lastCompletedDate >= todayStart) memento.completionMask else 0
+        val newMask = if (checked) currentMask or (1 shl occurrenceIndex)
+                      else currentMask and (1 shl occurrenceIndex).inv()
+        val allDone = (0 until memento.dailyCount).all { i -> (newMask shr i) and 1 == 1 }
+        // DAILY repeat: never permanently complete; other: complete when all occurrences done
+        val markCompleted = allDone && memento.repeatType == RepeatType.NONE
+        mementoDao.updateCompletion(memento.id, newMask, todayStart, markCompleted)
+    }
 }

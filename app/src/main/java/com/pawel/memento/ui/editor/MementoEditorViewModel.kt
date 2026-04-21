@@ -16,15 +16,26 @@ class MementoEditorViewModel(application: Application) : AndroidViewModel(applic
 
     fun loadMemento(id: Long) = viewModelScope.launch { _memento.value = repo.getMementoById(id) }
 
-    fun saveMemento(id: Long, title: String, description: String, dueDateTime: Long?, categoryId: Long?,
-                    priority: Priority, colorTagIndex: Int, reminderType: ReminderType,
-                    soundEnabled: Boolean, vibrationEnabled: Boolean, repeatType: RepeatType) = viewModelScope.launch {
+    fun saveMemento(
+        id: Long, title: String, description: String, dueDateTime: Long?,
+        categoryId: Long?, priority: Priority, colorTagIndex: Int,
+        reminderType: ReminderType, soundEnabled: Boolean, vibrationEnabled: Boolean,
+        repeatType: RepeatType, dailyCount: Int
+    ) = viewModelScope.launch {
         val existing = _memento.value
-        val m = Memento(id = if (id == 0L) 0L else id, title = title, description = description,
+        val m = Memento(
+            id = if (id == 0L) 0L else id,
+            title = title, description = description,
             dueDateTime = dueDateTime, categoryId = categoryId, priority = priority,
-            colorTagIndex = colorTagIndex, reminderType = reminderType, soundEnabled = soundEnabled,
-            vibrationEnabled = vibrationEnabled, isCompleted = existing?.isCompleted ?: false,
-            createdAt = existing?.createdAt ?: System.currentTimeMillis(), repeatType = repeatType)
+            colorTagIndex = colorTagIndex, reminderType = reminderType,
+            soundEnabled = soundEnabled, vibrationEnabled = vibrationEnabled,
+            isCompleted = existing?.isCompleted ?: false,
+            createdAt = existing?.createdAt ?: System.currentTimeMillis(),
+            repeatType = repeatType,
+            dailyCount = dailyCount.coerceIn(1, 5),
+            completionMask = existing?.completionMask ?: 0,
+            lastCompletedDate = existing?.lastCompletedDate ?: 0
+        )
         _savedId.value = if (id == 0L) repo.insertMemento(m) else { repo.updateMemento(m); id }
     }
 }

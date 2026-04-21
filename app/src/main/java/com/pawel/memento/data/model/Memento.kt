@@ -23,7 +23,13 @@ data class Memento(
     val vibrationEnabled: Boolean = true,
     val isCompleted: Boolean = false,
     val createdAt: Long = System.currentTimeMillis(),
-    val repeatType: RepeatType = RepeatType.NONE
+    val repeatType: RepeatType = RepeatType.NONE,
+    /** How many times per day this memento should be completed (1..5) */
+    val dailyCount: Int = 1,
+    /** Bitmask of completed occurrences for the current day (bit 0 = 1st, bit 1 = 2nd, …) */
+    val completionMask: Int = 0,
+    /** Start-of-day timestamp when completionMask was last written (used to detect day change) */
+    val lastCompletedDate: Long = 0
 )
 
 enum class Priority { LOW, MEDIUM, HIGH, URGENT }

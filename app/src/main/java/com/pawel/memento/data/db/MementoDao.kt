@@ -49,6 +49,10 @@ interface MementoDao {
     @Query("UPDATE mementos SET isCompleted = :completed WHERE id = :id")
     suspend fun setCompleted(id: Long, completed: Boolean)
 
+    /** Updates per-day occurrence completion (completionMask + lastCompletedDate). */
+    @Query("UPDATE mementos SET completionMask = :mask, lastCompletedDate = :date, isCompleted = :completed WHERE id = :id")
+    suspend fun updateCompletion(id: Long, mask: Int, date: Long, completed: Boolean)
+
     @Transaction
     @Query("SELECT * FROM mementos WHERE isCompleted = 0 AND (title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%') ORDER BY dueDateTime ASC")
     fun searchMementos(query: String): Flow<List<MementoWithCategory>>
