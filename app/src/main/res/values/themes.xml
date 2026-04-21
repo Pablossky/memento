@@ -16,12 +16,4 @@
         <item name="windowNoTitle">true</item>
     </style>
     <style name="Theme.Memento.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
-
-    <!-- <style name="Theme.Memento" parent="Theme.AppCompat.Light.DarkActionBar"></style> -->
-
-    <!-- <style name="Theme.Memento" parent="Theme.MaterialComponents.DayNight.NoActionBar"></style> -->
-
-
-<!-- Na to: -->
-    <!-- <style name="Theme.Memento.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" /> -->
 </resources>

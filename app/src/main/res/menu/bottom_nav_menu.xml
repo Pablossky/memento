@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_home"
         android:title="@string/nav_home" />
     <item
+        android:id="@+id/calendarFragment"
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/nav_calendar" />
+    <item
         android:id="@+id/categoriesFragment"
         android:icon="@drawable/ic_categories"
         android:title="@string/nav_categories" />
