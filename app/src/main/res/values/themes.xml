@@ -8,10 +8,10 @@
         <item name="android:colorBackground">@color/background</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorError">@color/error</item>
-        <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="colorOnSecondary">@color/on_secondary</item>
-        <item name="colorOnBackground">@color/on_background</item>
-        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorOnPrimary">@color/text_dark</item>
+        <item name="colorOnSecondary">@color/text_dark</item>
+        <item name="colorOnBackground">@color/text_dark</item>
+        <item name="colorOnSurface">@color/text_dark</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
