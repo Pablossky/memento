@@ -30,7 +30,7 @@ class CategoriesFragment : Fragment() {
         adapter = CategoryAdapter(onClick = { category ->
                 findNavController().navigate(
                     CategoriesFragmentDirections.actionCategoriesFragmentToCategoryDetailFragment(
-                        categoryId = category.id,
+                        categoryId = category.id.toInt(),
                         categoryName = category.name
                     )
                 )

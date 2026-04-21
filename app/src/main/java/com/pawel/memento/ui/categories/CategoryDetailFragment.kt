@@ -48,7 +48,7 @@ class CategoryDetailFragment : Fragment() {
                 CategoryDetailFragmentDirections.actionCategoryDetailFragmentToMementoEditorFragment(0L)
             )
         }
-        viewModel.setSelectedCategory(args.categoryId)
+        viewModel.setSelectedCategory(args.categoryId.toLong())
         viewModel.mementos.observe(viewLifecycleOwner) { list ->
             adapter.submitList(list)
             binding.tvEmpty.visibility = if (list.isEmpty()) View.VISIBLE else View.GONE
